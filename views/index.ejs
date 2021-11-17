@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+</head>
+<body>
+
+      <% if (user) {%>
+        <h1>WELCOME BACK <%= user.username %></h1>
+        <a href="/member">Join the Club</a>
+        <a href="/message">Create a Message</a>
+        <a href="/log-out">LOG OUT</a>
+      <% } else { %>
+      <h1>please log in</h1>
+      <form action="/log-in" method="POST">
+        <label for="username">Email Address</label>
+        <input name="username" placeholder="username" type="email" />
+        <label for="password">Password</label>
+        <input name="password" type="password" />
+        <button>Log In</button>
+      </form>
+
+      <a href="/sign-up">Sign Up</a>
+      <% } %>
+      <% if(data) { %>
+
+        <!--<div><%= JSON.stringify(data) %></div>-->
+
+        <%  for(var i = 0; i < data.length; i++ ){ %>   
+          <div>Title: <%= data[i].title %></div> 
+          <div>Text: <%= data[i].text %></div> 
+
+          <% if(user && user.membership) { %>
+            <div>Date: <%= data[i].date %></div>
+            <div>Author: <%= data[i].user_id.firstname + " " + data[i].user_id.lastname %></div>
+          <% } %>
+
+          <% if(user && user.admin) { %>
+            <form action="<%= `/delete-message/${data[i]._id}` %>"  method="POST">
+              <button>Delete</button>
+            </form>
+          <% } %>
+
+          <% } %>    
+      <% } %>
+
+
+</body>
+</html>
