@@ -46,7 +46,7 @@ The [challenge](https://www.theodinproject.com/paths/full-stack-javascript/cours
 - Confirm Password field
 - Tests
 - Error handling
-- Field Structure i.e. Models & Routes folders
+- File Structure i.e. Models & Routes folders
 - Problems with the checkbox implementation
 - Delete route not protected
 
